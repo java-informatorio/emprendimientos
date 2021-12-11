@@ -1,6 +1,7 @@
 package com.informatorio.emprendimientos.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,9 @@ public class Usuario {
     @NotNull
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
+
+    @CreationTimestamp
+    private LocalDateTime fechaDeCreacion;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Emprendimiento> emprendimientos = new ArrayList<>();
@@ -98,5 +103,13 @@ public class Usuario {
     public void removerCarrito(Emprendimiento emprendimiento) {
         emprendimientos.remove(emprendimiento);
         emprendimiento.setOwner(null);
+    }
+
+    public LocalDateTime getFechaDeCreacion() {
+        return fechaDeCreacion;
+    }
+
+    public void setFechaDeCreacion(LocalDateTime fechaDeCreacion) {
+        this.fechaDeCreacion = fechaDeCreacion;
     }
 }
