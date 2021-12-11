@@ -1,15 +1,21 @@
 package com.informatorio.emprendimientos.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -35,6 +41,9 @@ public class Usuario {
     @NotNull
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Emprendimiento> emprendimientos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -64,6 +73,7 @@ public class Usuario {
         this.username = username;
     }
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public String getPassword() {
         return password;
     }
@@ -78,5 +88,15 @@ public class Usuario {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public void agregarCarrito(Emprendimiento emprendimiento) {
+        emprendimientos.add(emprendimiento);
+        emprendimiento.setOwner(this);
+    }
+
+    public void removerCarrito(Emprendimiento emprendimiento) {
+        emprendimientos.remove(emprendimiento);
+        emprendimiento.setOwner(null);
     }
 }
