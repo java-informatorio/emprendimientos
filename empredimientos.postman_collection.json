@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "1ae45397-0777-405d-a982-33c386d8d90f",
+		"name": "empredimientos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "empredimiento",
+			"item": [
+				{
+					"name": "Crear Emprendimiento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"mate recicable\",\n    \"descripcion\": \"Lorem Ipsum Ipso Facto\",\n    \"id_usuario\": 3 \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/emprendimiento",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"emprendimiento"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "Crear Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Marge\",\n    \"apellido\": \"Simpson\",\n    \"username\": \"marge@gmail.com\",\n    \"password\": \"password\",\n    \"tipoUsuario\": \"OWNER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtenter Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtenter Todos con Fecha de Creacion Despues De",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
